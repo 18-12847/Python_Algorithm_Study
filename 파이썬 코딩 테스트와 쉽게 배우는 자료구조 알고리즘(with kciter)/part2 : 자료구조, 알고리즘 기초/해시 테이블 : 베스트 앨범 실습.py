@@ -1,3 +1,25 @@
+from collections import defaultdict
+def solution(genres, plays):
+    dic, ans = defaultdict(list), []
+    for idx, val in enumerate(genres):
+        dic[val].append(plays[idx])
+    for i in dic:
+        dic[i] = sorted(dic[i], reverse = True)        
+    lst = sorted(dic.items(), key = lambda x: sum(x[1]), reverse = True)
+    for i in lst:
+        if len(i[1]) == 0:
+            continue
+        elif len(i[1]) == 1:
+            ans.append(plays.index(i[1][0]))
+        else:
+            if i[1][0] == i[1][1]:
+                tmp = [idx for idx, val in enumerate(plays) if val == i[1][0]]
+                ans.extend([tmp[0], tmp[1]])
+            else:
+                ans.extend([plays.index(i[1][0]), plays.index(i[1][1])])
+    return ans
+
+'''
 def solution(genres, plays):
     dic, ans = {}, []
     for idx, val in enumerate(genres):
@@ -21,3 +43,4 @@ def solution(genres, plays):
                 ans.append(plays.index(i[1][0]))
                 ans.append(plays.index(i[1][1]))
     return ans
+'''
