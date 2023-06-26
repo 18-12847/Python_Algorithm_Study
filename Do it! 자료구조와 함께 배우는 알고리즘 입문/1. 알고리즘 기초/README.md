@@ -23,3 +23,4 @@ def med3(a, b, c):
     else:
         return b
 </pre>
+- 가우스 덧셈으로 1부터 n까지 정수의 합 구하기 : n * (n + 1) / 2
